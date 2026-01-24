@@ -79,29 +79,25 @@ const DOM = {
 // ========== UTILITY FUNCTIONS ==========
 
 function isValidEmail(email) {
+  // 1. Basic format check (allows any domain)
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!regex.test(email)) return false;
-  
+
   const domain = email.split('@')[1]?.toLowerCase();
-  
+
+  // 2. Block disposable/fake emails (Keep this if you want)
   const disposableDomains = [
     'tempmail.com', '10minutemail.com', 'guerrillamail.com',
     'mailinator.com', 'yopmail.com', 'getairmail.com',
     'temp-mail.org', 'sharklasers.com', 'trashmail.com',
     'fakeinbox.com', 'dispostable.com', 'mailnesia.com'
   ];
-  
+
   if (disposableDomains.includes(domain)) return false;
-  
-  const allowedDomains = [
-    'gmail.com', 'yahoo.com', 'outlook.com', 'hotmail.com',
-    'icloud.com', 'protonmail.com', 'zoho.com', 'aol.com',
-    'mail.com', 'gmx.com', 'yandex.com', 'live.com'
-  ];
-  
-  if (domain.includes('gmail') && domain !== 'gmail.com') return false;
-  
-  return allowedDomains.includes(domain);
+
+  // 3. REMOVED THE ALLOWED DOMAINS LIST
+  // This allows custom domains like @rozanshah.com.np to register
+  return true;
 }
 
 function showNotification(text, type = 'success', duration = 3000) {
