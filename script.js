@@ -438,8 +438,9 @@ function setupCharacterCounter() {
     const count = DOM.noteContentInput.value.length;
     DOM.charCount.textContent = count;
     
-    DOM.charCount.className = count > 4000 ? 'char-counter error' :
-                              count > 2000 ? 'char-counter warning' :
+    // Updated limits: Warning at 15,000, Error at 20,000
+    DOM.charCount.className = count > 20000 ? 'char-counter error' :
+                              count > 15000 ? 'char-counter warning' :
                               'char-counter';
   }, 100));
 }
@@ -869,8 +870,8 @@ window.editNote = function(noteId) {
   
   const count = note.content.length;
   DOM.charCount.textContent = count;
-  DOM.charCount.className = count > 4000 ? 'char-counter error' :
-                            count > 2000 ? 'char-counter warning' :
+  DOM.charCount.className = count > 20000 ? 'char-counter error' :
+                            count > 15000 ? 'char-counter warning' :
                             'char-counter';
   
   DOM.saveNoteBtn.innerHTML = '<i class="fas fa-save"></i> Update Note';

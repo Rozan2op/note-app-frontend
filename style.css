@@ -583,42 +583,50 @@ select {
 }
 
 /* ===== FIXED: BETTER NOTE CARD LAYOUT FOR LAPTOP ===== */
+/* ===== FIXED: Desktop layout to match mobile (Title on top, Buttons below) ===== */
 .note-card {
     background: white;
     border: 1px solid var(--gray-medium);
     border-radius: var(--radius-lg);
-    padding: 20px;
+    padding: 24px; /* Increased padding for better look */
     transition: var(--transition);
     position: relative;
     box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.note-header {
+    display: flex;
+    flex-direction: column; /* Stack title and buttons vertically */
+    gap: 15px; /* Space between title and buttons */
+    margin-bottom: 16px;
+    width: 100%;
+}
+
+.note-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1f2937 !important;
+    line-height: 1.4;
+    cursor: pointer;
+    width: 100%; /* Give title full width */
+    word-break: break-word;
+    margin-right: 0; /* Remove old margin */
+}
+
+.note-actions {
+    display: flex;
+    gap: 10px;
+    align-self: flex-end; /* Pushes buttons to the right side */
+    width: auto;
 }
 
 .note-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-lg);
     border-color: var(--primary);
-}
-
-/* FIXED: Better spacing for note header on laptop */
-.note-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 12px;
-    gap: 15px;
-}
-
-.note-title {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #1f2937 !important;
-    line-height: 1.4;
-    margin-bottom: 8px;
-    cursor: pointer;
-    flex: 1;
-    word-break: break-word;
-    min-width: 0;
-    margin-right: 15px; /* Space between title and buttons */
 }
 
 .note-title:hover {
@@ -663,13 +671,6 @@ select {
     display: flex;
     align-items: center;
     gap: 4px;
-}
-
-.note-actions {
-    display: flex;
-    gap: 8px;
-    flex-shrink: 0;
-    margin-left: auto;
 }
 
 .action-btn {
